@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: lunail-mod-svc
+  name: mod2-svc
   annotations:
     "mc-router.itzg.me/externalServerName": "mod2.kigawa.net"
 spec:
   selector:
-    app: lunail-mod
+    app: mod2
   ports:
     - protocol: TCP
       port: 25565
