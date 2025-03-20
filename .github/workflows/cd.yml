@@ -1,0 +1,76 @@
+on:
+  push:
+
+jobs:
+  cd:
+    strategy:
+      matrix:
+        branch:
+          - ref: "refs/heads/mod2"
+            manifestFile: ./manifest/mod2/mod2.yml
+            dockerDir: "mod2"
+            name: kigawa-net-mod2
+    runs-on: ubuntu-latest
+    env:
+      preDockerBuildCmd: ""
+      repository: kigawa-net/mc-manifest
+      manifestFile: ${{ matrix.branch.manifestFile }}
+      dockerFile: Dockerfile
+      name: ${{ matrix.branch.name }}
+      harborUser: robot$hew
+      dir: ${{ matrix.branch.dockerDir }}
+    steps:
+      # checkout
+      - run: echo ${{ github.ref }} ${{ github.ref == matrix.branch.ref }}
+      - uses: actions/checkout@v4
+        if: github.ref == matrix.branch.ref
+      - name: preBuild
+        if: github.ref == matrix.branch.ref && env.preDockerBuildCmd
+        run: ${{ env.preDockerBuildCmd }}
+
+      # docker
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        if: github.ref == matrix.branch.ref
+      - uses: docker/login-action@v3
+        if: github.ref == matrix.branch.ref
+        with:
+          registry: harbor.kigawa.net
+          username: ${{ env.harborUser }}
+          password: ${{ secrets.HARBOR_PASS }}
+
+      - uses: docker/build-push-action@v5
+        if: github.ref == matrix.branch.ref
+        with:
+          context: ${{ env.dir }}
+          file: ${{ env.dir }}/${{ env.dockerFile }}
+          push: true
+          tags: harbor.kigawa.net/private/${{ env.name }}:${{ github.ref_name }}-${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: ${{ env.dockerArg }}
+
+
+      # argo
+      - name: checkout manifest repository
+        uses: actions/checkout@v3
+        if: github.ref == matrix.branch.ref
+        with:
+          repository: ${{ env.repository }}
+          ref: main
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Update YAML File
+        if: github.ref == matrix.branch.ref
+        run: |
+          yq -i '.spec.template.spec.containers[0].image = "harbor.kigawa.net/private/${{ env.name }}:${{ github.ref_name }}-${{ github.sha }}"' \
+          ${{ env.manifestFile }}
+
+      - name: push
+        if: github.ref == matrix.branch.ref
+        run: |
+          git config user.name githubActions
+          git config user.email bot@kigawa.net
+          git add .
+          git commit --author=. -m "update rev"
+          git push
