@@ -33,7 +33,7 @@ spec:
           resources:
             limits:
               memory: 4.2Gi
-          image: itzg/minecraft-server:java17
+          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-01f75a4dd753f304a47e545ac520f4178665b354
           ports:
             - containerPort: 25565
           volumeMounts:
