@@ -44,8 +44,8 @@ spec:
           env:
             - name: SYNC_CHUNK_WRITES
               value: "false"
-            - name: CF_MODPACK_MANIFEST
-              value: /modpack/manifest.json
+            - name: CF_MODPACK_ZIP
+              value: /modpack/mod2.zip
             - name: MOD_PLATFORM
               value: AUTO_CURSEFORGE
             - name: CF_SLUG
