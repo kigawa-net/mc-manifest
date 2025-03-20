@@ -4,10 +4,10 @@ kind: Service
 metadata:
   name: mod2-svc
   annotations:
-    "mc-router.itzg.me/externalServerName": "mod2.kigawa.net"
+    "mc-router.itzg.me/externalServerName": "mod.kigawa.net"
 spec:
   selector:
-    app: mod2
+    app: mod
   ports:
     - protocol: TCP
       port: 25565
