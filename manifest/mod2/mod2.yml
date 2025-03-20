@@ -39,8 +39,6 @@ spec:
           volumeMounts:
             - name: mod2-mc
               mountPath: /data
-            - name: pack
-              mountPath: /modpack
           env:
             - name: SYNC_CHUNK_WRITES
               value: "false"
@@ -71,13 +69,6 @@ spec:
               value: >
                 -XX:+UnlockExperimentalVMOptions -verbose:gc
                 -Xlog:gc:./gc/gc.log
-      volumes:
-        - name: pack
-          configMap:
-            name: mod2-cnf
-            items:
-              - key: manifest.json
-                path: manifest.json
   volumeClaimTemplates:
     - metadata:
         name: mod2-mc
