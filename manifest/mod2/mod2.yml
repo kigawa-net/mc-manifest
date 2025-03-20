@@ -35,7 +35,7 @@ spec:
           resources:
             limits:
               memory: 4.5Gi
-          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-6436111c10319a2bfef2cc256e295ffce43bcf5f
+          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-4a2ade097d65bc6cc506ec8361365af93822afd1
           ports:
             - containerPort: 25565
           volumeMounts:
