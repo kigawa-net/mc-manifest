@@ -28,6 +28,8 @@ spec:
           volumeMounts:
             - name: mod2-mc
               mountPath: /data
+      imagePullSecrets:
+        - name: harbor-account
       containers:
         - name: mod2
           resources:
