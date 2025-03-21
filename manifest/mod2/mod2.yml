@@ -35,7 +35,7 @@ spec:
           resources:
             limits:
               memory: 5Gi
-          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-4a2ade097d65bc6cc506ec8361365af93822afd1
+          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-dded8a8be8705bcef7af805b35e5761d398e508b
           ports:
             - containerPort: 25565
           volumeMounts:
@@ -72,6 +72,7 @@ spec:
             - name: JVM_XX_OPTS
               value: >
                 -XX:+UnlockExperimentalVMOptions -verbose:gc -Xlog:gc:./gc/gc.log
+
       volumes:
         - name: mc
           persistentVolumeClaim:
