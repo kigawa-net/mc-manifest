@@ -34,7 +34,7 @@ spec:
         - name: mod2
           resources:
             limits:
-              memory: 4.6Gi
+              memory: 4.7Gi
           image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-4a2ade097d65bc6cc506ec8361365af93822afd1
           ports:
             - containerPort: 25565
