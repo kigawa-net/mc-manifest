@@ -16,20 +16,6 @@ spec:
         app: mod2
     spec:
       initContainers:
-        - name: copy
-          image: ubuntu
-          command:
-            - bash
-            - -c
-            - |
-              set -ue
-              apt update && apt install -y rsync
-              rsync -rq --delete /src-data/ /data/
-          volumeMounts:
-            - name: mod2-mc
-              mountPath: /src-data
-            - name: mc
-              mountPath: /data
         - name: init
           image: ubuntu
           command:
