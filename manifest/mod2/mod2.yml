@@ -44,6 +44,8 @@ spec:
           env:
             - name: SYNC_CHUNK_WRITES
               value: "false"
+            - name: SPAWN_PROTECTION
+              value: "0"
             - name: CF_MODPACK_ZIP
               value: /modpack/mod2.zip
             - name: MOD_PLATFORM
