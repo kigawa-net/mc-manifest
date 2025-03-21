@@ -16,6 +16,20 @@ spec:
         app: mod2
     spec:
       initContainers:
+        - name: copy
+          image: ubuntu
+          command:
+            - bash
+            - -c
+            - |
+              set -ue
+              apt update && apt install -y rsync
+              rsync -rq --delete /src-data/ /data/
+          volumeMounts:
+            - name: mod2-mc
+              mountPath: /src-data
+            - name: mc
+              mountPath: /data
         - name: init
           image: ubuntu
           command:
@@ -39,7 +53,7 @@ spec:
           ports:
             - containerPort: 25565
           volumeMounts:
-            - name: mod2-mc
+            - name: mc
               mountPath: /data
           env:
             - name: SYNC_CHUNK_WRITES
@@ -72,7 +86,10 @@ spec:
             - name: JVM_XX_OPTS
               value: >
                 -XX:+UnlockExperimentalVMOptions -verbose:gc -Xlog:gc:./gc/gc.log
-
+      volumes:
+        - name: mc
+          persistentVolumeClaim:
+            claimName: mod2-pvc
   volumeClaimTemplates:
     - metadata:
         name: mod2-mc

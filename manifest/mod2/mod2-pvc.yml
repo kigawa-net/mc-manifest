@@ -1,0 +1,13 @@
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mod2-pvc
+spec:
+  storageClassName: "rook-cephfs"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
