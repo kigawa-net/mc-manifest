@@ -69,9 +69,12 @@ spec:
               value: "true"
             - name: ONLINE_MODE
               value: "true"
+            - name: JVM_OPTS
+              value: >
+                -XX:UseZGC
             - name: JVM_XX_OPTS
               value: >
-                -XX:UseZGC -Xlog:gc:./gc/gc.log
+                -Xlog:gc:./gc/gc.log
 
       volumes:
         - name: mc
