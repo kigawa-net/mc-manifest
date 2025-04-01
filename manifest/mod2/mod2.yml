@@ -71,7 +71,7 @@ spec:
               value: "true"
             - name: JVM_XX_OPTS
               value: >
-                -XX:+UnlockExperimentalVMOptions -Xlog:gc:./gc/gc.log -XX:UseZGC
+               -Xlog:gc:./gc/gc.log -XX:UseZGC
 
       volumes:
         - name: mc
