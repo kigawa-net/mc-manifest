@@ -71,7 +71,7 @@ spec:
               value: "true"
             - name: JVM_OPTS
               value: >
-                -XX:UseZGC
+                -XX:+UseZGC
             - name: JVM_XX_OPTS
               value: >
                 -Xlog:gc:./gc/gc.log
