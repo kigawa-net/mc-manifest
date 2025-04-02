@@ -74,7 +74,7 @@ spec:
                 -XX:+UseZGC
             - name: JVM_XX_OPTS
               value: >
-                -Xlog:gc:./gc/gc.log
+                -Xlog:gc:./gc/gc.log -verbose:gc 
 
       volumes:
         - name: mc
