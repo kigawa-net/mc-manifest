@@ -71,7 +71,7 @@ spec:
               value: "true"
             - name: JVM_OPTS
               value: >
-                -XX:+UseZGC -XX:MaxGCPauseMillis=50 -XX:+PrintGCDetails
+                -XX:+UseZGC -XX:MaxGCPauseMillis=50
             - name: JVM_XX_OPTS
               value: >
                 -Xlog:gc:./gc/gc.log -verbose:gc 
