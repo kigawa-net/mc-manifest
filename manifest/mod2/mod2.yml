@@ -74,7 +74,7 @@ spec:
                 -XX:+UseZGC -XX:MaxGCPauseMillis=50
             - name: JVM_XX_OPTS
               value: >
-                -Xlog:gc:./gc/gc.log -verbose:gc 
+                -Xlog:gc*:./gc/gc.log:time,uptime,level,tags -verbose:gc 
 
       volumes:
         - name: mc
