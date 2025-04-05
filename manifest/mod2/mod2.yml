@@ -34,7 +34,7 @@ spec:
         - name: mod2
           resources:
             limits:
-              memory: 5.5Gi
+              memory: 7.5Gi
           image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-63447a10cd413127f804c7597633ffcf93ab9b78
           ports:
             - containerPort: 25565
@@ -60,7 +60,7 @@ spec:
             - name: MOTD
               value: "kigawa mod server 2"
             - name: MEMORY
-              value: 4G
+              value: 6G
             - name: TYPE
               value: FORGE
             - name: VERSION
@@ -71,7 +71,7 @@ spec:
               value: "true"
             - name: JVM_OPTS
               value: >
-                -XX:+UseZGC -XX:MaxGCPauseMillis=50
+                -XX:+UseG1GC -XX:MaxGCPauseMillis=50
             - name: JVM_XX_OPTS
               value: >
                 -Xlog:gc*:./gc/gc.log:time,uptime,level,tags -verbose:gc 
