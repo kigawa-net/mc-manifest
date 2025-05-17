@@ -46,7 +46,8 @@ spec:
               value: "false"
             - name: SPAWN_PROTECTION
               value: "0"
-            - name: MODPACK
+#            - name: MODPACK
+            - name: CF_SERVER_MOD
               value: "https://public.kigawa.net/mc/modpack/atm10/2025-0517.zip"
 #            - name: CF_MODPACK_ZIP
 #              value: /modpack/atm10.zip
@@ -64,7 +65,8 @@ spec:
             - name: MEMORY
               value: 6G
             - name: TYPE
-              value: NEOFORGE
+              value: CURSEFORGE
+#              value: NEOFORGE
 #              value: FORGE
             - name: VERSION
               value: "1.21.1"
