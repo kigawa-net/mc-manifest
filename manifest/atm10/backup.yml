@@ -2,10 +2,10 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: backup
+  name: atm10-backup
 spec:
   concurrencyPolicy: Forbid
-  schedule: "30 * * * *"
+  schedule: "45 * * * *"
   jobTemplate:
     spec:
       template:
