@@ -47,8 +47,8 @@ spec:
             - name: SPAWN_PROTECTION
               value: "0"
 #            - name: MODPACK
-            - name: CF_SERVER_MOD
-              value: "https://public.kigawa.net/mc/modpack/atm10/2025-0517.zip"
+            - name: CF_MODPACK_ZIP
+              value: "https://public.kigawa.net/mc/modpack/atm10/2025-05-17.zip"
 #            - name: CF_MODPACK_ZIP
 #              value: /modpack/atm10.zip
 #            - name: MOD_PLATFORM
