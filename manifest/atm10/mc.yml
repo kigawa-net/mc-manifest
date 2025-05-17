@@ -64,7 +64,8 @@ spec:
             - name: MEMORY
               value: 6G
             - name: TYPE
-              value: FORGE
+              value: NEOFORGE
+#              value: FORGE
             - name: VERSION
               value: "1.21.1"
             - name: EULA
