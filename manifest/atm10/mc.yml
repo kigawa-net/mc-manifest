@@ -68,6 +68,8 @@ spec:
 #              value: FORGE
             - name: VERSION
               value: "1.21.1"
+            - name: NEOFORGE_VERSION
+              value: "21.1.168"
             - name: EULA
               value: "true"
             - name: ONLINE_MODE
