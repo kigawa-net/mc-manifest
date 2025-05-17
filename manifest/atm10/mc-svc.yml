@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: atm10-svc
+  annotations:
+    "mc-router.itzg.me/externalServerName": "atm10.kigawa.net"
+spec:
+  selector:
+    app: atm10
+  ports:
+    - protocol: TCP
+      port: 25565
+      targetPort: 25565
+      name: mc
+  type: ClusterIP
