@@ -65,7 +65,8 @@ spec:
             - name: MEMORY
               value: 6G
             - name: TYPE
-              value: CURSEFORGE
+              value: AUTO_CURSEFORGE
+#              value: CURSEFORGE
 #              value: NEOFORGE
 #              value: FORGE
             - name: VERSION
