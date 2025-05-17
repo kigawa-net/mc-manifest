@@ -47,32 +47,33 @@ spec:
             - name: SPAWN_PROTECTION
               value: "0"
 #            - name: MODPACK
-            - name: CF_MODPACK_ZIP
+#            - name: CF_MODPACK_ZIP
+            - name: CF_SERVER_MOD
               value: "https://public.kigawa.net/mc/modpack/atm10/2025-05-17.zip"
 #            - name: CF_MODPACK_ZIP
 #              value: /modpack/atm10.zip
 #            - name: MOD_PLATFORM
 #              value: AUTO_CURSEFORGE
-            - name: CF_SLUG
-              value: custom
-            - name: CF_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: key
-                  name: forge-mod-key
+#            - name: CF_SLUG
+#              value: custom
+#            - name: CF_API_KEY
+#              valueFrom:
+#                secretKeyRef:
+#                  key: key
+#                  name: forge-mod-key
             - name: MOTD
               value: "kigawa mod server 2"
             - name: MEMORY
               value: 6G
             - name: TYPE
-              value: AUTO_CURSEFORGE
-#              value: CURSEFORGE
+#              value: AUTO_CURSEFORGE
+              value: CURSEFORGE
 #              value: NEOFORGE
 #              value: FORGE
-            - name: VERSION
-              value: "1.21.1"
-            - name: NEOFORGE_VERSION
-              value: "21.1.168"
+#            - name: VERSION
+#              value: "1.21.1"
+#            - name: NEOFORGE_VERSION
+#              value: "21.1.168"
             - name: EULA
               value: "true"
             - name: ONLINE_MODE
