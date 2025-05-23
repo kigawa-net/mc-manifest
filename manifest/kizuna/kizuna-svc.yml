@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kizuna-svc
+  annotations:
+    "mc-router.itzg.me/externalServerName": "mod.kigawa.net"
+spec:
+  selector:
+    app: kizuna
+  ports:
+    - protocol: TCP
+      port: 25565
+      targetPort: 25565
+      name: mc
+  type: ClusterIP

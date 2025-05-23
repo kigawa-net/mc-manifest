@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mod2
+  name: kizuna
 spec:
   replicas: 1
-  serviceName: mod2-svc
+  serviceName: kizuna-svc
   selector:
     matchLabels:
-      app: mod2
+      app: kizuna
   template:
     metadata:
       deletionGracePeriodSeconds: 600
       labels:
-        app: mod2
+        app: kizuna
     spec:
       initContainers:
         - name: init
@@ -26,16 +26,16 @@ spec:
               mkdir /data/gc || true
               chown 1000:1000 -R /data
           volumeMounts:
-            - name: mod2-mc
+            - name: kizuna-mc
               mountPath: /data
       imagePullSecrets:
         - name: harbor-account
       containers:
-        - name: mod2
+        - name: kizuna
           resources:
             limits:
               memory: 7.5Gi
-          image: harbor.kigawa.net/private/kigawa-net-mod2:mod2-63447a10cd413127f804c7597633ffcf93ab9b78
+          image: itzg
           ports:
             - containerPort: 25565
           volumeMounts:
@@ -47,7 +47,7 @@ spec:
             - name: SPAWN_PROTECTION
               value: "0"
             - name: CF_MODPACK_ZIP
-              value: /modpack/mod2.zip
+              value: /modpack/kizuna.zip
             - name: MOD_PLATFORM
               value: AUTO_CURSEFORGE
             - name: CF_SLUG
@@ -79,4 +79,4 @@ spec:
       volumes:
         - name: mc
           persistentVolumeClaim:
-            claimName: mod2-pvc
+            claimName: kizuna-pvc
