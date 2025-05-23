@@ -65,7 +65,7 @@ spec:
               value: PAPER
 #              value: FORGE
             - name: VERSION
-              value: "1.21.5"
+              value: "1.21.4"
             - name: EULA
               value: "true"
             - name: ONLINE_MODE
