@@ -1,101 +1,101 @@
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: atm10
-spec:
-  replicas: 1
-  serviceName: atm10-svc
-  selector:
-    matchLabels:
-      app: atm10
-  template:
-    metadata:
-      deletionGracePeriodSeconds: 600
-      labels:
-        app: atm10
-    spec:
-      initContainers:
-        - name: init
-          image: ubuntu
-          command:
-            - bash
-            - -c
-            - |
-              set -ue
-              mkdir /data/gc || true
-              chown 1000:1000 -R /data
-          volumeMounts:
-            - name: atm10-mc
-              mountPath: /data
-      imagePullSecrets:
-        - name: harbor-account
-      containers:
-        - name: atm10
-          resources:
-            limits:
-              memory: 7.5Gi
-          image: itzg/minecraft-server:java21
-          ports:
-            - containerPort: 25565
-          volumeMounts:
-            - name: mc
-              mountPath: /data
-          env:
-            - name: SYNC_CHUNK_WRITES
-              value: "false"
-            - name: SPAWN_PROTECTION
-              value: "0"
-#            - name: MODPACK
-#            - name: CF_MODPACK_ZIP
-            - name: CF_SERVER_MOD
-              value: "https://public.kigawa.net/mc/modpack/atm10/2025-05-17.zip"
-#            - name: CF_MODPACK_ZIP
-#              value: /modpack/atm10.zip
-#            - name: MOD_PLATFORM
-#              value: AUTO_CURSEFORGE
-#            - name: CF_SLUG
-#              value: custom
-#            - name: CF_API_KEY
-#              valueFrom:
-#                secretKeyRef:
-#                  key: key
-#                  name: forge-mod-key
-            - name: MOTD
-              value: "kigawa mod server 2"
-            - name: MEMORY
-              value: 6G
-            - name: TYPE
-#              value: AUTO_CURSEFORGE
-              value: CURSEFORGE
-#              value: NEOFORGE
-#              value: FORGE
-#            - name: VERSION
-#              value: "1.21.1"
-#            - name: NEOFORGE_VERSION
-#              value: "21.1.168"
-            - name: EULA
-              value: "true"
-            - name: ONLINE_MODE
-              value: "true"
-            - name: JVM_OPTS
-              value: >
-                -XX:+UseG1GC -XX:MaxGCPauseMillis=50
-            - name: JVM_XX_OPTS
-              value: >
-                -Xlog:gc*:./gc.log:time,uptime,level,tags -verbose:gc 
-
-      volumes:
-        - name: mc
-          persistentVolumeClaim:
-            claimName: atm10-pvc
-  volumeClaimTemplates:
-    - metadata:
-        name: atm10-mc
-      spec:
-        storageClassName: "rook-cephfs"
-        accessModes:
-          - ReadWriteMany
-        resources:
-          requests:
-            storage: 32Gi
+#---
+#apiVersion: apps/v1
+#kind: StatefulSet
+#metadata:
+#  name: atm10
+#spec:
+#  replicas: 1
+#  serviceName: atm10-svc
+#  selector:
+#    matchLabels:
+#      app: atm10
+#  template:
+#    metadata:
+#      deletionGracePeriodSeconds: 600
+#      labels:
+#        app: atm10
+#    spec:
+#      initContainers:
+#        - name: init
+#          image: ubuntu
+#          command:
+#            - bash
+#            - -c
+#            - |
+#              set -ue
+#              mkdir /data/gc || true
+#              chown 1000:1000 -R /data
+#          volumeMounts:
+#            - name: atm10-mc
+#              mountPath: /data
+#      imagePullSecrets:
+#        - name: harbor-account
+#      containers:
+#        - name: atm10
+#          resources:
+#            limits:
+#              memory: 7.5Gi
+#          image: itzg/minecraft-server:java21
+#          ports:
+#            - containerPort: 25565
+#          volumeMounts:
+#            - name: mc
+#              mountPath: /data
+#          env:
+#            - name: SYNC_CHUNK_WRITES
+#              value: "false"
+#            - name: SPAWN_PROTECTION
+#              value: "0"
+##            - name: MODPACK
+##            - name: CF_MODPACK_ZIP
+#            - name: CF_SERVER_MOD
+#              value: "https://public.kigawa.net/mc/modpack/atm10/2025-05-17.zip"
+##            - name: CF_MODPACK_ZIP
+##              value: /modpack/atm10.zip
+##            - name: MOD_PLATFORM
+##              value: AUTO_CURSEFORGE
+##            - name: CF_SLUG
+##              value: custom
+##            - name: CF_API_KEY
+##              valueFrom:
+##                secretKeyRef:
+##                  key: key
+##                  name: forge-mod-key
+#            - name: MOTD
+#              value: "kigawa mod server 2"
+#            - name: MEMORY
+#              value: 6G
+#            - name: TYPE
+##              value: AUTO_CURSEFORGE
+#              value: CURSEFORGE
+##              value: NEOFORGE
+##              value: FORGE
+##            - name: VERSION
+##              value: "1.21.1"
+##            - name: NEOFORGE_VERSION
+##              value: "21.1.168"
+#            - name: EULA
+#              value: "true"
+#            - name: ONLINE_MODE
+#              value: "true"
+#            - name: JVM_OPTS
+#              value: >
+#                -XX:+UseG1GC -XX:MaxGCPauseMillis=50
+#            - name: JVM_XX_OPTS
+#              value: >
+#                -Xlog:gc*:./gc.log:time,uptime,level,tags -verbose:gc
+#
+#      volumes:
+#        - name: mc
+#          persistentVolumeClaim:
+#            claimName: atm10-pvc
+#  volumeClaimTemplates:
+#    - metadata:
+#        name: atm10-mc
+#      spec:
+#        storageClassName: "rook-cephfs"
+#        accessModes:
+#          - ReadWriteMany
+#        resources:
+#          requests:
+#            storage: 32Gi

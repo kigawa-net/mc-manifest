@@ -5,7 +5,7 @@ metadata:
   name: backup
 spec:
   concurrencyPolicy: Forbid
-  schedule: "30 * * * *"
+  schedule: "15 * * * *"
   jobTemplate:
     spec:
       template:
