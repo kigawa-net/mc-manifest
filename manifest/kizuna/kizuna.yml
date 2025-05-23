@@ -35,7 +35,7 @@ spec:
           resources:
             limits:
               memory: 7.5Gi
-          image: itzg
+          image: itzg/minecraft-server:java21
           ports:
             - containerPort: 25565
           volumeMounts:
@@ -46,25 +46,26 @@ spec:
               value: "false"
             - name: SPAWN_PROTECTION
               value: "0"
-            - name: CF_MODPACK_ZIP
-              value: /modpack/kizuna.zip
-            - name: MOD_PLATFORM
-              value: AUTO_CURSEFORGE
-            - name: CF_SLUG
-              value: custom
-            - name: CF_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: key
-                  name: forge-mod-key
+#            - name: CF_MODPACK_ZIP
+#              value: /modpack/kizuna.zip
+#            - name: MOD_PLATFORM
+#              value: AUTO_CURSEFORGE
+#            - name: CF_SLUG
+#              value: custom
+#            - name: CF_API_KEY
+#              valueFrom:
+#                secretKeyRef:
+#                  key: key
+#                  name: forge-mod-key
             - name: MOTD
-              value: "kigawa mod server 2"
+              value: "kizuna server"
             - name: MEMORY
-              value: 6G
+              value: 4G
             - name: TYPE
-              value: FORGE
-            - name: VERSION
-              value: "1.20.1"
+              value: SPIGOT
+#              value: FORGE
+#            - name: VERSION
+#              value: "1.20.1"
             - name: EULA
               value: "true"
             - name: ONLINE_MODE
@@ -74,7 +75,7 @@ spec:
                 -XX:+UseG1GC -XX:MaxGCPauseMillis=50
             - name: JVM_XX_OPTS
               value: >
-                -Xlog:gc*:./gc/gc.log:time,uptime,level,tags -verbose:gc 
+                -Xlog:gc*:./gc/gc.log:time,uptime,level,tags -verbose:gc
 
       volumes:
         - name: mc
