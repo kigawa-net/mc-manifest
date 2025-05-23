@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: kizuna-svc
   annotations:
-    "mc-router.itzg.me/externalServerName": "mod.kigawa.net"
+    "mc-router.itzg.me/externalServerName": "kizuna.kigawa.net"
 spec:
   selector:
     app: kizuna
