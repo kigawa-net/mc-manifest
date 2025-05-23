@@ -64,8 +64,8 @@ spec:
             - name: TYPE
               value: SPIGOT
 #              value: FORGE
-#            - name: VERSION
-#              value: "1.20.1"
+            - name: VERSION
+              value: "1.21.5"
             - name: EULA
               value: "true"
             - name: ONLINE_MODE
