@@ -62,7 +62,7 @@ spec:
             - name: MEMORY
               value: 4G
             - name: TYPE
-              value: SPIGOT
+              value: PAPER
 #              value: FORGE
             - name: VERSION
               value: "1.21.5"
