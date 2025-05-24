@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mc-kizuna
+  name: kizuana-pvc
 spec:
   storageClassName: ""
   accessModes:
