@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 32Gi
-  volumeName: kigawa-net-kizuna-pv
+  volumeName: kigawa-net-kizuna-pv-1
