@@ -1,51 +1,51 @@
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: kizuna-backup
-spec:
-  concurrencyPolicy: Forbid
-  schedule: "15 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-            - image: kigawa01/fonsole:main
-              name: fonsole
-              resources:
-                limits:
-                  memory: 768Mi
-              env:
-                - name: MONGO_USERNAME
-                  valueFrom:
-                    secretKeyRef:
-                      key: user
-                      name: fonsole
-                - name: MONGO_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      key: pass
-                      name: fonsole
-                - name: PROJECT_NAME
-                  value: "kigawa-net-kizuna"
-                - name: MAX_REQUEST
-                  value: "1"
-                - name: MONGO_HOST
-                  value: "mongo-svc.fonsole.svc.cluster.local"
-                - name: BACKUP_PATH
-                  value: "/src/build"
-              args:
-                - backup
-              volumeMounts:
-                - name: build
-                  mountPath: /src/build
-          #                - name: backup
-          #                  mountPath: /backup
-          restartPolicy: OnFailure
-          volumes:
-            - name: build
-              persistentVolumeClaim:
-                claimName: kizuna-pvc
----
-
+#---
+#apiVersion: batch/v1
+#kind: CronJob
+#metadata:
+#  name: kizuna-backup
+#spec:
+#  concurrencyPolicy: Forbid
+#  schedule: "15 * * * *"
+#  jobTemplate:
+#    spec:
+#      template:
+#        spec:
+#          containers:
+#            - image: kigawa01/fonsole:main
+#              name: fonsole
+#              resources:
+#                limits:
+#                  memory: 768Mi
+#              env:
+#                - name: MONGO_USERNAME
+#                  valueFrom:
+#                    secretKeyRef:
+#                      key: user
+#                      name: fonsole
+#                - name: MONGO_PASSWORD
+#                  valueFrom:
+#                    secretKeyRef:
+#                      key: pass
+#                      name: fonsole
+#                - name: PROJECT_NAME
+#                  value: "kigawa-net-kizuna"
+#                - name: MAX_REQUEST
+#                  value: "1"
+#                - name: MONGO_HOST
+#                  value: "mongo-svc.fonsole.svc.cluster.local"
+#                - name: BACKUP_PATH
+#                  value: "/src/build"
+#              args:
+#                - backup
+#              volumeMounts:
+#                - name: build
+#                  mountPath: /src/build
+#          #                - name: backup
+#          #                  mountPath: /backup
+#          restartPolicy: OnFailure
+#          volumes:
+#            - name: build
+#              persistentVolumeClaim:
+#                claimName: kizuna-pvc
+#---
+#
